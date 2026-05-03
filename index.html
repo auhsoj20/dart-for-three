@@ -135,6 +135,25 @@
         transition: border-color 0.15s;
       }
       .darts-name-input:focus { border-bottom-color: var(--darts-red-bright); }
+      .darts-remove-btn {
+        background: transparent;
+        border: 1px solid var(--darts-stone-700);
+        color: var(--darts-stone-500);
+        width: 2rem;
+        height: 2rem;
+        border-radius: 2px;
+        font-size: 1.25rem;
+        line-height: 1;
+        cursor: pointer;
+        font-family: inherit;
+        transition: color 0.15s, border-color 0.15s;
+      }
+      .darts-remove-btn:hover:not(:disabled) { color: var(--darts-red-soft); border-color: var(--darts-red); }
+      .darts-remove-btn:disabled { opacity: 0.2; cursor: not-allowed; }
+      .darts-add-player-btn {
+        display: block;
+        margin: 0 0 1.5rem;
+      }
       .darts-primary-btn, .darts-success-btn, .darts-neutral-btn {
         font-family: 'Bebas Neue', sans-serif;
         letter-spacing: 0.02em;
@@ -378,7 +397,10 @@
       const { useState, useMemo, useRef, useEffect } = React;
 
       const START_SCORE = 501;
-      const DEFAULT_NAMES = ["Spieler 1", "Spieler 2", "Spieler 3"];
+      const MIN_PLAYERS = 2;
+      const MAX_PLAYERS = 8;
+      const defaultName = (i) => `Spieler ${i + 1}`;
+      const INITIAL_NAMES = [defaultName(0), defaultName(1), defaultName(2)];
 
       const CHECKOUT_HINTS = {
         170: "T20 T20 Bull", 167: "T20 T19 Bull", 164: "T20 T18 Bull", 161: "T20 T17 Bull",
@@ -418,7 +440,7 @@
 
       function DartsGame() {
         const [phase, setPhase] = useState("setup");
-        const [names, setNames] = useState(DEFAULT_NAMES);
+        const [names, setNames] = useState(INITIAL_NAMES);
         const [players, setPlayers] = useState([]);
         const [currentIdx, setCurrentIdx] = useState(0);
         const [history, setHistory] = useState([]);
@@ -434,7 +456,7 @@
 
         const startGame = () => {
           setPlayers(names.map((n, i) => ({
-            name: n.trim() || DEFAULT_NAMES[i],
+            name: n.trim() || defaultName(i),
             score: START_SCORE,
             throws: [],
           })));
@@ -442,6 +464,16 @@
           setHistory([]);
           setWinnerIdx(null);
           setPhase("playing");
+        };
+
+        const addPlayer = () => {
+          if (names.length >= MAX_PLAYERS) return;
+          setNames([...names, defaultName(names.length)]);
+        };
+
+        const removePlayer = (i) => {
+          if (names.length <= MIN_PLAYERS) return;
+          setNames(names.filter((_, idx) => idx !== i));
         };
 
         const applyThrow = (scored, finishedOnDouble) => {
@@ -565,12 +597,28 @@
                           type="text"
                           value={n}
                           onChange={(e) => setNames(names.map((v, idx) => (idx === i ? e.target.value : v)))}
-                          placeholder={DEFAULT_NAMES[i]}
+                          placeholder={defaultName(i)}
                           className="darts-name-input"
                         />
+                        <button
+                          type="button"
+                          onClick={() => removePlayer(i)}
+                          disabled={names.length <= MIN_PLAYERS}
+                          className="darts-remove-btn"
+                          aria-label="Spieler entfernen"
+                          title={names.length <= MIN_PLAYERS ? `Mindestens ${MIN_PLAYERS} Spieler` : "Spieler entfernen"}
+                        >×</button>
                       </div>
                     ))}
                   </div>
+                  <button
+                    type="button"
+                    onClick={addPlayer}
+                    disabled={names.length >= MAX_PLAYERS}
+                    className="darts-link-btn darts-add-player-btn"
+                  >
+                    + Spieler hinzufügen
+                  </button>
                   <button onClick={startGame} className="darts-primary-btn darts-primary-btn--lg">
                     Spiel starten
                   </button>
