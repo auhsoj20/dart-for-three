@@ -1,3 +1,4 @@
+import './App.css'
 import DartsGame from './DartsGame'
 
 function App() {
