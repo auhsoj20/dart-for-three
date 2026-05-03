@@ -1,6 +1,6 @@
 # Dart for Three
 
-Diese Repository enthält eine einfache GitHub Page für das Dart-Scoring-Projekt mit Fokus auf drei Spieler.
+Dieses Repository enthält eine einfache GitHub Page für das Dart-Scoring-Projekt mit Fokus auf drei Spieler.
 
 ## Inhalt
 
