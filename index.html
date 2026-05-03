@@ -3,11 +3,703 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dart for Three</title>
+    <title>Dart for Three — 501 Double Out</title>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --darts-red: #dc2626;
+        --darts-red-bright: #ef4444;
+        --darts-red-soft: #f87171;
+        --darts-amber: #fbbf24;
+        --darts-amber-light: #fcd34d;
+        --darts-green: #15803d;
+        --darts-green-bright: #16a34a;
+        --darts-bg-mid: #0a0606;
+        --darts-bg-warm: #1f1410;
+        --darts-stone-100: #f5f5f4;
+        --darts-stone-200: #e7e5e4;
+        --darts-stone-300: #d6d3d1;
+        --darts-stone-400: #a8a29e;
+        --darts-stone-500: #78716c;
+        --darts-stone-600: #57534e;
+        --darts-stone-700: #44403c;
+        --darts-stone-800: #292524;
+        --darts-stone-900: #1c1917;
+      }
+      html, body {
+        margin: 0;
+        background: var(--darts-bg-mid);
+        color: var(--darts-stone-100);
+        font-family: 'Fraunces', Georgia, serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .darts-root {
+        min-height: 100svh;
+        background: radial-gradient(ellipse at top, var(--darts-bg-warm) 0%, var(--darts-bg-mid) 60%, #000 100%);
+      }
+      .darts-container {
+        max-width: 64rem;
+        margin: 0 auto;
+        padding: 2rem 1.25rem;
+        position: relative;
+      }
+      .darts-grain::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        opacity: 0.06;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+      .darts-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--darts-stone-800);
+      }
+      .darts-title {
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 0.02em;
+        font-size: clamp(2.5rem, 6vw, 3.75rem);
+        color: var(--darts-red-bright);
+        text-shadow: 0 2px 20px rgba(220, 38, 38, 0.4);
+        margin: 0;
+        line-height: 1;
+      }
+      .darts-subtitle {
+        color: var(--darts-stone-500);
+        font-size: 0.875rem;
+        font-style: italic;
+        margin: 0.25rem 0 0;
+      }
+      .darts-link-btn {
+        background: transparent;
+        border: none;
+        color: var(--darts-stone-500);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        cursor: pointer;
+        font-family: inherit;
+        padding: 0.25rem 0;
+        transition: color 0.15s;
+      }
+      .darts-link-btn:hover:not(:disabled) { color: var(--darts-red-soft); }
+      .darts-link-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+      .darts-card {
+        background: rgba(12, 10, 9, 0.6);
+        border: 1px solid var(--darts-stone-800);
+        border-radius: 2px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .darts-card-title {
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 0.02em;
+        font-size: 1.875rem;
+        color: var(--darts-stone-200);
+        margin: 0 0 1.5rem;
+      }
+      .darts-setup { padding: 2rem; }
+      .darts-name-list { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+      .darts-name-row { display: flex; align-items: center; gap: 1rem; }
+      .darts-name-num {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 2.25rem;
+        color: var(--darts-red);
+        width: 2.5rem;
+        text-align: center;
+      }
+      .darts-name-input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--darts-stone-700);
+        outline: none;
+        padding: 0.5rem 0;
+        font-size: 1.25rem;
+        color: var(--darts-stone-100);
+        font-family: inherit;
+        transition: border-color 0.15s;
+      }
+      .darts-name-input:focus { border-bottom-color: var(--darts-red-bright); }
+      .darts-primary-btn, .darts-success-btn, .darts-neutral-btn {
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 0.02em;
+        font-size: 1.5rem;
+        border: none;
+        border-radius: 2px;
+        padding: 0.75rem 2rem;
+        cursor: pointer;
+        transition: background-color 0.15s;
+      }
+      .darts-primary-btn { background: var(--darts-red); color: #fff; }
+      .darts-primary-btn:hover { background: var(--darts-red-bright); }
+      .darts-primary-btn--lg { width: 100%; }
+      .darts-success-btn { background: var(--darts-green); color: #fff; padding: 1rem 2rem; flex: 1; }
+      .darts-success-btn:hover { background: var(--darts-green-bright); }
+      .darts-neutral-btn { background: var(--darts-stone-800); color: var(--darts-stone-200); padding: 1rem 2rem; flex: 1; }
+      .darts-neutral-btn:hover { background: var(--darts-stone-700); }
+      .darts-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2rem; }
+      @media (min-width: 768px) { .darts-grid { grid-template-columns: repeat(3, 1fr); } }
+      .darts-player {
+        position: relative;
+        background: rgba(12, 10, 9, 0.8);
+        border: 1px solid var(--darts-stone-800);
+        border-radius: 2px;
+        padding: 1.25rem;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      .darts-player--active {
+        border-color: var(--darts-red);
+        box-shadow:
+          0 0 0 1px rgba(220, 38, 38, 0.6),
+          0 0 40px -8px rgba(220, 38, 38, 0.5),
+          inset 0 0 60px -20px rgba(220, 38, 38, 0.25);
+      }
+      .darts-player--winner { border-color: var(--darts-amber); }
+      .darts-pulse-dot {
+        position: absolute;
+        top: -0.5rem;
+        right: -0.5rem;
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 9999px;
+        background: var(--darts-red-bright);
+        animation: darts-pulse 2.5s ease-in-out infinite;
+      }
+      @keyframes darts-pulse {
+        0%, 100% { transform: scale(1); opacity: 0.5; }
+        50% { transform: scale(1.05); opacity: 0.8; }
+      }
+      .darts-player-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+        gap: 0.5rem;
+      }
+      .darts-player-name {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--darts-stone-400);
+        margin: 0;
+        font-weight: 400;
+      }
+      .darts-player-name--winner { color: var(--darts-amber); }
+      .darts-win-badge {
+        font-family: 'Bebas Neue', sans-serif;
+        color: var(--darts-amber);
+        font-size: 1.5rem;
+        animation: darts-win-burst 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
+      @keyframes darts-win-burst {
+        0% { transform: scale(0.8); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      .darts-player-score {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(4.5rem, 12vw, 6rem);
+        line-height: 1;
+        color: var(--darts-stone-200);
+        letter-spacing: 0.02em;
+      }
+      .darts-player-score--active { color: var(--darts-red-bright); }
+      .darts-player-score--winner { color: var(--darts-amber-light); }
+      .darts-player-foot {
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--darts-stone-800);
+        display: flex;
+        justify-content: space-between;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        color: var(--darts-stone-500);
+        gap: 0.5rem;
+      }
+      .darts-bust { color: var(--darts-red-bright); }
+      .darts-ok { color: var(--darts-stone-300); }
+      .darts-input-card { background: rgba(12, 10, 9, 0.8); margin-bottom: 1.5rem; }
+      .darts-input-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+        gap: 0.5rem;
+      }
+      .darts-input-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--darts-stone-500);
+      }
+      .darts-input-player {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.5rem;
+        color: var(--darts-red-bright);
+        letter-spacing: 0.02em;
+      }
+      .darts-checkout {
+        margin-bottom: 0.75rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        color: rgba(251, 191, 36, 0.8);
+        background: rgba(120, 53, 15, 0.3);
+        border: 1px solid rgba(146, 64, 14, 0.4);
+        border-radius: 2px;
+        padding: 0.5rem 0.75rem;
+      }
+      .darts-checkout-value { color: var(--darts-amber-light); }
+      .darts-input-row { display: flex; gap: 0.75rem; }
+      .darts-score-input {
+        flex: 1;
+        background: var(--darts-stone-900);
+        border: 1px solid var(--darts-stone-700);
+        outline: none;
+        padding: 1rem;
+        font-size: 1.875rem;
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 0.02em;
+        color: var(--darts-stone-100);
+        border-radius: 2px;
+        transition: border-color 0.15s;
+        width: 100%;
+        min-width: 0;
+      }
+      .darts-score-input:focus { border-color: var(--darts-red-bright); }
+      .darts-score-input::-webkit-outer-spin-button,
+      .darts-score-input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      .darts-score-input[type='number'] { -moz-appearance: textfield; }
+      .darts-error { color: var(--darts-red-soft); font-size: 0.875rem; margin: 0.5rem 0 0; }
+      .darts-quick { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+      .darts-chip {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        color: var(--darts-stone-400);
+        background: transparent;
+        border: 1px solid var(--darts-stone-700);
+        border-radius: 2px;
+        padding: 0.25rem 0.75rem;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+      }
+      .darts-chip:hover { color: var(--darts-red-soft); border-color: var(--darts-red); }
+      .darts-finish-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.875rem;
+        color: var(--darts-amber-light);
+        margin: 0 0 0.25rem;
+        letter-spacing: 0.02em;
+      }
+      .darts-finish-sub { color: var(--darts-stone-400); font-style: italic; margin: 0 0 1.25rem; }
+      .darts-finish-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+      .darts-history-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.75rem;
+        gap: 0.5rem;
+      }
+      .darts-history-title {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--darts-stone-500);
+        margin: 0;
+        font-weight: 400;
+      }
+      .darts-history {
+        background: rgba(12, 10, 9, 0.4);
+        border: 1px solid var(--darts-stone-900);
+        border-radius: 2px;
+        max-height: 16rem;
+        overflow-y: auto;
+      }
+      .darts-history-empty {
+        color: var(--darts-stone-600);
+        text-align: center;
+        padding: 1.5rem 0;
+        font-style: italic;
+        font-size: 0.875rem;
+        margin: 0;
+      }
+      .darts-history-list { list-style: none; margin: 0; padding: 0; }
+      .darts-history-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid var(--darts-stone-900);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.875rem;
+        gap: 1rem;
+      }
+      .darts-history-item:last-child { border-bottom: none; }
+      .darts-history-left { color: var(--darts-stone-400); }
+      .darts-history-name { color: var(--darts-stone-200); }
+      .darts-history-meta { color: var(--darts-stone-600); }
+      .darts-history-points { color: var(--darts-stone-300); }
+      .darts-loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100svh;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 2rem;
+        color: var(--darts-stone-500);
+        letter-spacing: 0.05em;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div id="root"><div class="darts-loading">LADE …</div></div>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel" data-presets="react">
+      const { useState, useMemo, useRef, useEffect } = React;
+
+      const START_SCORE = 501;
+      const DEFAULT_NAMES = ["Spieler 1", "Spieler 2", "Spieler 3"];
+
+      const CHECKOUT_HINTS = {
+        170: "T20 T20 Bull", 167: "T20 T19 Bull", 164: "T20 T18 Bull", 161: "T20 T17 Bull",
+        160: "T20 T20 D20", 158: "T20 T20 D19", 157: "T20 T19 D20", 156: "T20 T20 D18",
+        155: "T20 T19 D19", 154: "T20 T18 D20", 153: "T20 T19 D18", 152: "T20 T20 D16",
+        151: "T20 T17 D20", 150: "T20 T18 D18", 149: "T20 T19 D16", 148: "T20 T20 D14",
+        147: "T20 T17 D18", 146: "T20 T18 D16", 145: "T20 T15 D20", 144: "T20 T20 D12",
+        143: "T20 T17 D16", 142: "T20 T14 D20", 141: "T20 T19 D12", 140: "T20 T20 D10",
+        139: "T19 T14 D20", 138: "T20 T18 D12", 137: "T20 T15 D16", 136: "T20 T20 D8",
+        135: "Bull T17 D17", 134: "T20 T14 D16", 133: "T20 T19 D8", 132: "Bull Bull D16",
+        131: "T20 T13 D16", 130: "T20 T18 D8", 129: "T19 T16 D12", 128: "T18 T14 D16",
+        127: "T20 T17 D8", 126: "T19 T19 D6", 125: "T20 T15 D10", 124: "T20 T16 D8",
+        123: "T19 T16 D9", 122: "T18 T18 D7", 121: "T20 T11 D14", 120: "T20 S20 D20",
+        119: "T19 T12 D13", 118: "T20 S18 D20", 117: "T20 S17 D20", 116: "T20 S16 D20",
+        115: "T20 S15 D20", 114: "T20 S14 D20", 113: "T20 S13 D20", 112: "T20 S12 D20",
+        111: "T20 S11 D20", 110: "T20 S10 D20", 109: "T20 S9 D20", 108: "T20 S16 D16",
+        107: "T19 S10 D20", 106: "T20 S6 D20", 105: "T20 S13 D16", 104: "T18 S18 D16",
+        103: "T19 S10 D18", 102: "T20 S10 D16", 101: "T17 S10 D20", 100: "T20 D20",
+        99: "T19 S10 D16", 98: "T20 D19", 97: "T19 D20", 96: "T20 D18", 95: "T19 D19",
+        94: "T18 D20", 93: "T19 D18", 92: "T20 D16", 91: "T17 D20", 90: "T20 D15",
+        89: "T19 D16", 88: "T20 D14", 87: "T17 D18", 86: "T18 D16", 85: "T15 D20",
+        84: "T20 D12", 83: "T17 D16", 82: "Bull D16", 81: "T19 D12", 80: "T20 D10",
+        79: "T19 D11", 78: "T18 D12", 77: "T19 D10", 76: "T20 D8", 75: "T17 D12",
+        74: "T14 D16", 73: "T19 D8", 72: "T16 D12", 71: "T13 D16", 70: "T18 D8",
+        69: "T19 D6", 68: "T20 D4", 67: "T17 D8", 66: "T10 D18", 65: "T19 D4",
+        64: "T16 D8", 63: "T13 D12", 62: "T10 D16", 61: "T15 D8", 60: "S20 D20",
+        59: "S19 D20", 58: "S18 D20", 57: "S17 D20", 56: "S16 D20", 55: "S15 D20",
+        54: "S14 D20", 53: "S13 D20", 52: "S12 D20", 51: "S11 D20", 50: "Bull",
+        49: "S9 D20", 48: "S16 D16", 47: "S15 D16", 46: "S14 D16", 45: "S13 D16",
+        44: "S12 D16", 43: "S11 D16", 42: "S10 D16", 41: "S9 D16", 40: "D20",
+        38: "D19", 36: "D18", 34: "D17", 32: "D16", 30: "D15", 28: "D14", 26: "D13",
+        24: "D12", 22: "D11", 20: "D10", 18: "D9", 16: "D8", 14: "D7", 12: "D6",
+        10: "D5", 8: "D4", 6: "D3", 4: "D2", 2: "D1",
+      };
+
+      const QUICK_VALUES = [26, 41, 45, 60, 81, 100, 140, 180];
+
+      function DartsGame() {
+        const [phase, setPhase] = useState("setup");
+        const [names, setNames] = useState(DEFAULT_NAMES);
+        const [players, setPlayers] = useState([]);
+        const [currentIdx, setCurrentIdx] = useState(0);
+        const [history, setHistory] = useState([]);
+        const [input, setInput] = useState("");
+        const [error, setError] = useState("");
+        const [pendingFinish, setPendingFinish] = useState(null);
+        const [winnerIdx, setWinnerIdx] = useState(null);
+        const inputRef = useRef(null);
+
+        useEffect(() => {
+          if (phase === "playing" && inputRef.current) inputRef.current.focus();
+        }, [phase, currentIdx, pendingFinish]);
+
+        const startGame = () => {
+          setPlayers(names.map((n, i) => ({
+            name: n.trim() || DEFAULT_NAMES[i],
+            score: START_SCORE,
+            throws: [],
+          })));
+          setCurrentIdx(0);
+          setHistory([]);
+          setWinnerIdx(null);
+          setPhase("playing");
+        };
+
+        const applyThrow = (scored, finishedOnDouble) => {
+          const cur = players[currentIdx];
+          const remaining = cur.score - scored;
+          let bust = false;
+          let reason = null;
+          let newScore = cur.score;
+          let throwScored = scored;
+
+          if (remaining < 0) { bust = true; reason = "Überworfen"; }
+          else if (remaining === 0 && !finishedOnDouble) { bust = true; reason = "Kein Doppel"; }
+          else if (remaining === 1) { bust = true; reason = "Rest 1 (nicht ausspielbar)"; }
+          else { newScore = remaining; }
+
+          if (bust) throwScored = 0;
+
+          const updated = [...players];
+          updated[currentIdx] = {
+            ...cur,
+            score: newScore,
+            throws: [...cur.throws, {
+              scored: throwScored, attempted: scored, bust, reason,
+              finishedOnDouble: !bust && finishedOnDouble,
+            }],
+          };
+          setPlayers(updated);
+          setHistory((h) => [...h, {
+            playerIdx: currentIdx, scored: throwScored, attempted: scored,
+            before: cur.score, after: newScore, bust, reason,
+          }]);
+
+          if (newScore === 0 && !bust) {
+            setWinnerIdx(currentIdx);
+            setPhase("finished");
+            return;
+          }
+          setCurrentIdx((idx) => (idx + 1) % players.length);
+        };
+
+        const submitThrow = (e) => {
+          if (e) e.preventDefault();
+          setError("");
+          const val = parseInt(input, 10);
+          if (isNaN(val) || val < 0 || val > 180) {
+            setError("Bitte eine Zahl zwischen 0 und 180 eingeben.");
+            return;
+          }
+          const cur = players[currentIdx];
+          const remaining = cur.score - val;
+          if (remaining === 0) {
+            setPendingFinish({ scored: val });
+            return;
+          }
+          applyThrow(val, false);
+          setInput("");
+        };
+
+        const confirmFinish = (onDouble) => {
+          applyThrow(pendingFinish.scored, onDouble);
+          setPendingFinish(null);
+          setInput("");
+        };
+
+        const undo = () => {
+          if (history.length === 0) return;
+          const last = history[history.length - 1];
+          const updated = [...players];
+          const p = updated[last.playerIdx];
+          updated[last.playerIdx] = {
+            ...p,
+            score: last.before,
+            throws: p.throws.slice(0, -1),
+          };
+          setPlayers(updated);
+          setHistory((h) => h.slice(0, -1));
+          setCurrentIdx(last.playerIdx);
+          setWinnerIdx(null);
+          setPhase("playing");
+          setInput("");
+          setError("");
+        };
+
+        const reset = () => {
+          if (!window.confirm("Spiel wirklich zurücksetzen?")) return;
+          setPhase("setup");
+          setPlayers([]);
+          setHistory([]);
+          setWinnerIdx(null);
+          setInput("");
+          setError("");
+        };
+
+        const checkoutHint = useMemo(() => {
+          if (phase !== "playing") return null;
+          const s = players[currentIdx]?.score;
+          return CHECKOUT_HINTS[s] || null;
+        }, [players, currentIdx, phase]);
+
+        return (
+          <div className="darts-root">
+            <div className="darts-container darts-grain">
+              <header className="darts-header">
+                <div>
+                  <h1 className="darts-title">501 · Double Out</h1>
+                  <p className="darts-subtitle">Drei Spieler · ein Brett · ein Sieger</p>
+                </div>
+                {phase !== "setup" && (
+                  <button onClick={reset} className="darts-link-btn">↺ Neues Spiel</button>
+                )}
+              </header>
+
+              {phase === "setup" && (
+                <div className="darts-card darts-setup">
+                  <h2 className="darts-card-title">Spielernamen</h2>
+                  <div className="darts-name-list">
+                    {names.map((n, i) => (
+                      <div key={i} className="darts-name-row">
+                        <div className="darts-name-num">{i + 1}</div>
+                        <input
+                          type="text"
+                          value={n}
+                          onChange={(e) => setNames(names.map((v, idx) => (idx === i ? e.target.value : v)))}
+                          placeholder={DEFAULT_NAMES[i]}
+                          className="darts-name-input"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <button onClick={startGame} className="darts-primary-btn darts-primary-btn--lg">
+                    Spiel starten
+                  </button>
+                </div>
+              )}
+
+              {(phase === "playing" || phase === "finished") && (
+                <>
+                  <div className="darts-grid">
+                    {players.map((p, i) => {
+                      const isActive = phase === "playing" && i === currentIdx;
+                      const isWinner = phase === "finished" && i === winnerIdx;
+                      const lastThrow = p.throws[p.throws.length - 1];
+                      const totalThrown = p.throws.reduce((s, t) => s + t.scored, 0);
+                      const avg = p.throws.length ? (totalThrown / p.throws.length).toFixed(1) : "—";
+                      const cardClass = ["darts-player",
+                        isActive && "darts-player--active",
+                        isWinner && "darts-player--winner"]
+                        .filter(Boolean).join(" ");
+                      return (
+                        <div key={i} className={cardClass}>
+                          {isActive && <div className="darts-pulse-dot" />}
+                          <div className="darts-player-head">
+                            <h3 className={"darts-player-name" + (isWinner ? " darts-player-name--winner" : "")}>{p.name}</h3>
+                            {isWinner && <span className="darts-win-badge">★ Sieg</span>}
+                          </div>
+                          <div className={"darts-player-score" +
+                            (isActive ? " darts-player-score--active" : "") +
+                            (isWinner ? " darts-player-score--winner" : "")}>
+                            {p.score}
+                          </div>
+                          <div className="darts-player-foot">
+                            <span>Ø {avg}</span>
+                            <span>
+                              Letzter:{" "}
+                              {lastThrow ? (
+                                <span className={lastThrow.bust ? "darts-bust" : "darts-ok"}>
+                                  {lastThrow.bust ? `BUST (${lastThrow.attempted})` : lastThrow.scored}
+                                </span>
+                              ) : "—"}
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {phase === "playing" && (
+                    <div className="darts-card darts-input-card">
+                      {pendingFinish ? (
+                        <div>
+                          <p className="darts-finish-title">{players[currentIdx].name} – mögliches Finish!</p>
+                          <p className="darts-finish-sub">Wurde mit einem Doppel beendet?</p>
+                          <div className="darts-finish-buttons">
+                            <button onClick={() => confirmFinish(true)} className="darts-success-btn">Ja – Doppel ✓</button>
+                            <button onClick={() => confirmFinish(false)} className="darts-neutral-btn">Nein – Bust</button>
+                          </div>
+                        </div>
+                      ) : (
+                        <form onSubmit={submitThrow}>
+                          <div className="darts-input-head">
+                            <span className="darts-input-label">Aufnahme von</span>
+                            <span className="darts-input-player">{players[currentIdx].name}</span>
+                          </div>
+                          {checkoutHint && (
+                            <div className="darts-checkout">
+                              💡 Checkout: <span className="darts-checkout-value">{checkoutHint}</span>
+                            </div>
+                          )}
+                          <div className="darts-input-row">
+                            <input
+                              ref={inputRef}
+                              type="number"
+                              inputMode="numeric"
+                              min="0"
+                              max="180"
+                              value={input}
+                              onChange={(e) => setInput(e.target.value)}
+                              placeholder="0–180"
+                              className="darts-score-input"
+                            />
+                            <button type="submit" className="darts-primary-btn">Eintragen</button>
+                          </div>
+                          {error && <p className="darts-error">{error}</p>}
+                          <div className="darts-quick">
+                            {QUICK_VALUES.map((v) => (
+                              <button key={v} type="button" onClick={() => setInput(String(v))} className="darts-chip">{v}</button>
+                            ))}
+                            <button type="button" onClick={() => setInput("0")} className="darts-chip">0 (verfehlt)</button>
+                          </div>
+                        </form>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="darts-history-head">
+                    <h3 className="darts-history-title">Verlauf</h3>
+                    <button onClick={undo} disabled={history.length === 0} className="darts-link-btn">
+                      ← Letzte Aufnahme rückgängig
+                    </button>
+                  </div>
+                  <div className="darts-history">
+                    {history.length === 0 ? (
+                      <p className="darts-history-empty">Noch keine Würfe</p>
+                    ) : (
+                      <ul className="darts-history-list">
+                        {history.slice().reverse().map((h, idx) => (
+                          <li key={idx} className="darts-history-item">
+                            <span className="darts-history-left">
+                              <span className="darts-history-name">{players[h.playerIdx].name}</span>
+                              <span className="darts-history-meta"> · {h.before} → {h.after}</span>
+                            </span>
+                            <span className={h.bust ? "darts-bust" : "darts-history-points"}>
+                              {h.bust ? `BUST (${h.attempted}) – ${h.reason}` : `+${h.scored}`}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<DartsGame />);
+    </script>
   </body>
 </html>
