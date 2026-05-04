@@ -1,12 +1,15 @@
 # Dart for Three
 
-Dieses Repository enthält eine einfache GitHub Page für das Dart-Scoring-Projekt mit Fokus auf drei Spieler.
+Statische GitHub Page für Dart-Scoring (X01, Cricket, Around the Clock, Shanghai).
 
 ## Inhalt
 
-- **index.html**: Die statische GitHub Page (kein Build nötig).
-- **src/**: Der bestehende React-Code, falls du die App weiterentwickeln möchtest.
+- **index.html**: komplette App als single-file (React via CDN, Babel-Standalone für JSX, kein Build).
+- **favicon.svg**: Icon der Seite.
+- **.github/workflows/deploy.yml**: Auto-Deploy auf GitHub Pages bei Push auf `main`.
 
-## Veröffentlichung
+## Lokale Vorschau
 
-GitHub Pages kann direkt aus dem Repository root bereitgestellt werden, da die Seite statisch ist.
+```sh
+python3 -m http.server 8000
+```
