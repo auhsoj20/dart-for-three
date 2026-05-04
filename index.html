@@ -473,6 +473,296 @@
         color: var(--darts-stone-500);
         letter-spacing: 0.1em;
       }
+
+      /* Mode picker (setup) */
+      .darts-section-title {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.8125rem;
+        color: var(--darts-stone-500);
+        margin: 0 0 0.625rem;
+      }
+      .darts-mode-picker { margin-bottom: 1.5rem; }
+      .darts-mode-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      @media (min-width: 480px) {
+        .darts-mode-grid { grid-template-columns: repeat(4, 1fr); }
+      }
+      .darts-mode-chip {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-size: 0.875rem;
+        background: var(--darts-stone-900);
+        color: var(--darts-stone-300);
+        border: 1px solid var(--darts-stone-700);
+        border-radius: 2px;
+        padding: 0.625rem 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+      }
+      .darts-mode-chip:hover {
+        background: var(--darts-stone-800);
+        border-color: var(--darts-stone-600);
+      }
+      .darts-mode-chip--active {
+        background: var(--darts-red);
+        border-color: var(--darts-red);
+        color: #fff;
+      }
+      .darts-mode-chip--active:hover {
+        background: var(--darts-red-bright);
+        border-color: var(--darts-red-bright);
+      }
+      .darts-mode-config { display: flex; flex-direction: column; gap: 0.75rem; }
+      .darts-mode-config:empty { display: none; }
+      .darts-config-row {
+        display: flex;
+        flex-direction: column;
+        gap: 0.375rem;
+      }
+      .darts-config-label {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.6875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--darts-stone-500);
+        font-weight: 500;
+      }
+      .darts-segmented {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+        gap: 0;
+        border: 1px solid var(--darts-stone-700);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .darts-segmented-btn {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 500;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        background: transparent;
+        color: var(--darts-stone-300);
+        border: none;
+        border-right: 1px solid var(--darts-stone-700);
+        padding: 0.5rem 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.15s, color 0.15s;
+      }
+      .darts-segmented-btn:last-child { border-right: none; }
+      .darts-segmented-btn:hover { background: var(--darts-stone-800); }
+      .darts-segmented-btn--active {
+        background: var(--darts-red);
+        color: #fff;
+      }
+      .darts-segmented-btn--active:hover { background: var(--darts-red-bright); }
+
+      /* Mode badge in header */
+      .darts-mode-badge {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 500;
+        font-size: 0.6875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--darts-stone-500);
+        margin-top: 0.125rem;
+      }
+
+      /* 3-dart-slot input layout (Cricket / Clock / Shanghai) */
+      .darts-dart-slots {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .darts-dart-slot {
+        background: var(--darts-stone-900);
+        border: 1px solid var(--darts-stone-700);
+        border-radius: 2px;
+        padding: 0.5rem 0.375rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.375rem;
+        min-height: 4rem;
+        font-family: inherit;
+        color: inherit;
+        cursor: pointer;
+        transition: background-color 0.1s, border-color 0.1s;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+      .darts-dart-slot-label {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.625rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--darts-stone-500);
+      }
+      .darts-dart-slot-value {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        font-size: 1.25rem;
+        color: var(--darts-stone-100);
+        font-variant-numeric: tabular-nums;
+        line-height: 1;
+      }
+      .darts-dart-slot-value--miss { color: var(--darts-stone-600); }
+
+      /* Mult toggle (S/D/T) */
+      .darts-mult-toggle {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.25rem;
+        margin-bottom: 0.5rem;
+      }
+      .darts-mult-btn {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        font-size: 0.875rem;
+        background: var(--darts-stone-900);
+        color: var(--darts-stone-300);
+        border: 1px solid var(--darts-stone-700);
+        border-radius: 2px;
+        padding: 0.5rem 0;
+        cursor: pointer;
+        transition: background-color 0.1s, border-color 0.1s, color 0.1s;
+      }
+      .darts-mult-btn:hover { background: var(--darts-stone-800); }
+      .darts-mult-btn--active {
+        background: var(--darts-red);
+        border-color: var(--darts-red);
+        color: #fff;
+      }
+      .darts-mult-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      /* Cricket targets */
+      .darts-target-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.25rem;
+        margin-bottom: 0.5rem;
+      }
+      .darts-target-btn {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        font-size: 0.875rem;
+        background: var(--darts-stone-900);
+        color: var(--darts-stone-200);
+        border: 1px solid var(--darts-stone-700);
+        border-radius: 2px;
+        padding: 0.625rem 0;
+        cursor: pointer;
+        transition: background-color 0.1s, border-color 0.1s, color 0.1s;
+        font-variant-numeric: tabular-nums;
+      }
+      .darts-target-btn:hover { background: var(--darts-stone-800); }
+      .darts-target-btn--active {
+        background: var(--darts-red);
+        border-color: var(--darts-red);
+        color: #fff;
+      }
+
+      /* Cricket mini-grid in player card */
+      .darts-cricket-row {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.125rem;
+        margin-top: 0.375rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.625rem;
+        text-align: center;
+      }
+      .darts-cricket-cell {
+        padding: 0.125rem 0;
+        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--darts-stone-500);
+        line-height: 1.1;
+      }
+      .darts-cricket-cell-num {
+        font-size: 0.5625rem;
+        opacity: 0.7;
+        display: block;
+      }
+      .darts-cricket-cell-mark {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        color: var(--darts-stone-300);
+        font-size: 0.75rem;
+        line-height: 1;
+      }
+      .darts-cricket-cell--closed { background: rgba(220, 38, 38, 0.2); }
+      .darts-cricket-cell--closed .darts-cricket-cell-mark { color: var(--darts-red-soft); }
+      .darts-cricket-points {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.6875rem;
+        color: var(--darts-amber-light);
+        margin-top: 0.25rem;
+        text-align: right;
+      }
+
+      /* Clock big target */
+      .darts-clock-target {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        font-size: 1.75rem;
+        color: var(--darts-red-bright);
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: -0.01em;
+      }
+      .darts-clock-arrow {
+        color: var(--darts-stone-500);
+        font-size: 0.875rem;
+        margin-right: 0.25rem;
+      }
+      .darts-clock-meta {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.625rem;
+        color: var(--darts-stone-500);
+        margin-top: 0.25rem;
+      }
+
+      /* Shanghai round indicator */
+      .darts-shanghai-round {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        font-size: 0.6875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--darts-amber);
+        text-align: center;
+        margin-bottom: 0.375rem;
+        padding: 0.25rem 0;
+        background: rgba(120, 53, 15, 0.25);
+        border: 1px solid rgba(146, 64, 14, 0.4);
+        border-radius: 2px;
+      }
+      .darts-shanghai-burst {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: 1.25rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--darts-amber);
+        text-align: center;
+        padding: 0.5rem;
+        animation: darts-win-burst 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
     </style>
   </head>
   <body>
@@ -485,7 +775,6 @@
     <script type="text/babel" data-presets="react">
       const { useState, useMemo } = React;
 
-      const START_SCORE = 501;
       const MIN_PLAYERS = 2;
       const MAX_PLAYERS = 8;
       const defaultName = (i) => `Spieler ${i + 1}`;
@@ -528,27 +817,651 @@
       const QUICK_VALUES = [0, 26, 41, 45, 60, 81, 100, 140, 180];
       const KEYPAD_DIGITS = [7, 8, 9, 4, 5, 6, 1, 2, 3];
       const HISTORY_LIMIT = 4;
+      const MULT_LABEL = ['Miss', 'S', 'D', 'T'];
 
+      // ===================================================================
+      // X01 mode (301 / 501 / 701 · Single / Double / Master Out)
+      // ===================================================================
+      const X01_FINISH_LABEL = { single: 'Single Out', double: 'Double Out', master: 'Master Out' };
+
+      function X01ConfigUI({ config, setConfig }) {
+        return (
+          <>
+            <div className="darts-config-row">
+              <span className="darts-config-label">Startpunktzahl</span>
+              <div className="darts-segmented">
+                {[301, 501, 701].map((s) => (
+                  <button key={s} type="button"
+                    className={"darts-segmented-btn" + (config.startScore === s ? " darts-segmented-btn--active" : "")}
+                    onClick={() => setConfig({ ...config, startScore: s })}>{s}</button>
+                ))}
+              </div>
+            </div>
+            <div className="darts-config-row">
+              <span className="darts-config-label">Finish</span>
+              <div className="darts-segmented">
+                {[['single','Single'],['double','Double'],['master','Master']].map(([k,l]) => (
+                  <button key={k} type="button"
+                    className={"darts-segmented-btn" + (config.finish === k ? " darts-segmented-btn--active" : "")}
+                    onClick={() => setConfig({ ...config, finish: k })}>{l}</button>
+                ))}
+              </div>
+            </div>
+          </>
+        );
+      }
+
+      function X01InputPanel({ player, modeConfig, error, setError, applyResult }) {
+        const [input, setInput] = useState("");
+        const [pending, setPending] = useState(null);
+
+        const checkoutHint = (modeConfig.finish === 'double') ? (CHECKOUT_HINTS[player.score] || null) : null;
+
+        const appendDigit = (d) => {
+          setError("");
+          const next = input === "0" ? String(d) : input + String(d);
+          if (parseInt(next, 10) > 180) return;
+          if (next.length > 3) return;
+          setInput(next);
+        };
+        const deleteDigit = () => { setError(""); setInput(v => v.slice(0, -1)); };
+        const setQuick = (v) => { setError(""); setInput(String(v)); };
+        const clearInput = () => { setError(""); setInput(""); };
+
+        const apply = (scored, finishedOnSpecial, bust, reason) => {
+          const newScore = bust ? player.score : (player.score - scored);
+          const throwScored = bust ? 0 : scored;
+          const newPlayer = {
+            ...player,
+            score: newScore,
+            throws: [...player.throws, { scored: throwScored, attempted: scored, bust, reason, finishedOnSpecial: !bust && finishedOnSpecial }],
+          };
+          applyResult({
+            playerUpdate: newPlayer,
+            historyData: { mode: 'x01', scored: throwScored, attempted: scored, before: player.score, after: newScore, bust, reason },
+            win: !bust && newScore === 0,
+          });
+          setInput("");
+          setPending(null);
+        };
+
+        const submit = () => {
+          setError("");
+          if (input === "") { setError("Keine Zahl eingegeben."); return; }
+          const val = parseInt(input, 10);
+          if (isNaN(val) || val < 0 || val > 180) { setError("Bitte eine Zahl zwischen 0 und 180 eingeben."); return; }
+          const remaining = player.score - val;
+
+          if (modeConfig.finish === 'single') {
+            if (remaining < 0) apply(val, false, true, "Überworfen");
+            else apply(val, false, false, null);
+            return;
+          }
+          // double / master
+          if (remaining === 0) { setPending({ scored: val }); return; }
+          if (remaining === 1 && modeConfig.finish === 'double') { apply(val, false, true, "Rest 1 (nicht ausspielbar)"); return; }
+          if (remaining < 0) { apply(val, false, true, "Überworfen"); return; }
+          apply(val, false, false, null);
+        };
+
+        const confirmFinish = (yes) => {
+          if (yes) apply(pending.scored, true, false, null);
+          else apply(pending.scored, false, true, modeConfig.finish === 'master' ? "Kein Doppel/Triple" : "Kein Doppel");
+        };
+
+        if (pending) {
+          return (
+            <div>
+              <p className="darts-finish-title">{player.name} – mögliches Finish!</p>
+              <p className="darts-finish-sub">
+                {modeConfig.finish === 'master' ? "Mit Doppel oder Triple beendet?" : "Mit Doppel beendet?"}
+              </p>
+              <div className="darts-finish-buttons">
+                <button onClick={() => confirmFinish(true)} className="darts-success-btn">Ja ✓</button>
+                <button onClick={() => confirmFinish(false)} className="darts-neutral-btn">Nein – Bust</button>
+              </div>
+            </div>
+          );
+        }
+
+        return (
+          <>
+            <div className="darts-input-head">
+              <span className="darts-input-label">Aufnahme von</span>
+              <span className="darts-input-player">{player.name}</span>
+            </div>
+            {checkoutHint && (
+              <div className="darts-checkout">
+                💡 Checkout: <span className="darts-checkout-value">{checkoutHint}</span>
+              </div>
+            )}
+            <div className="darts-display-row">
+              <div className={"darts-display" + (input === "" ? " darts-display--empty" : "")}>
+                {input === "" ? "0–180" : input}
+              </div>
+              <button type="button" onClick={deleteDigit} className="darts-key darts-key--util" aria-label="Letzte Ziffer löschen">⌫</button>
+              <button type="button" onClick={clearInput} className="darts-key darts-key--util" aria-label="Eingabe leeren">C</button>
+            </div>
+            <div className="darts-keypad">
+              {KEYPAD_DIGITS.map(d => (<button key={d} type="button" onClick={() => appendDigit(d)} className="darts-key">{d}</button>))}
+              <button type="button" onClick={() => appendDigit(0)} className="darts-key">0</button>
+              <button type="button" onClick={submit} className="darts-key darts-key--submit">Eintragen</button>
+            </div>
+            {error && <p className="darts-error">{error}</p>}
+            <div className="darts-quick">
+              {QUICK_VALUES.map(v => (<button key={v} type="button" onClick={() => setQuick(v)} className="darts-chip">{v}</button>))}
+            </div>
+          </>
+        );
+      }
+
+      function X01PlayerCard({ player, isActive, isWinner }) {
+        const lastThrow = player.throws[player.throws.length - 1];
+        const totalThrown = player.throws.reduce((s, t) => s + t.scored, 0);
+        const avg = player.throws.length ? (totalThrown / player.throws.length).toFixed(0) : "—";
+        return (
+          <>
+            <div className={"darts-player-score" +
+              (isActive ? " darts-player-score--active" : "") +
+              (isWinner ? " darts-player-score--winner" : "")}>{player.score}</div>
+            <div className="darts-player-foot">
+              <span>Ø {avg}</span>
+              <span>{lastThrow ? (
+                <span className={lastThrow.bust ? "darts-bust" : "darts-ok"}>
+                  {lastThrow.bust ? "BUST" : `+${lastThrow.scored}`}
+                </span>
+              ) : "—"}</span>
+            </div>
+          </>
+        );
+      }
+
+      function X01HistoryItem({ entry }) {
+        return (
+          <>
+            <span className="darts-history-left">
+              <span className="darts-history-meta">{entry.before} → {entry.after}</span>
+            </span>
+            <span className={entry.bust ? "darts-bust" : "darts-history-points"}>
+              {entry.bust ? `BUST (${entry.attempted}) – ${entry.reason}` : `+${entry.scored}`}
+            </span>
+          </>
+        );
+      }
+
+      const X01_MODE = {
+        id: 'x01', label: 'X01',
+        fullLabel: (cfg) => `${cfg.startScore} · ${X01_FINISH_LABEL[cfg.finish]}`,
+        defaultConfig: { startScore: 501, finish: 'double' },
+        initPlayer: (name, cfg) => ({ name, score: cfg.startScore, throws: [] }),
+        initState: () => ({}),
+        ConfigUI: X01ConfigUI,
+        InputPanel: X01InputPanel,
+        PlayerCard: X01PlayerCard,
+        HistoryItem: X01HistoryItem,
+      };
+
+      // ===================================================================
+      // Cricket (15-20 + Bull, 3 Treffer öffnen, Punkte solange Gegner offen)
+      // ===================================================================
+      const CRICKET_TARGETS = ['20','19','18','17','16','15','B'];
+      const CRICKET_VALUES = { '15': 15, '16': 16, '17': 17, '18': 18, '19': 19, '20': 20, 'B': 25 };
+
+      function CricketConfigUI({ config, setConfig }) {
+        return (
+          <div className="darts-config-row">
+            <span className="darts-config-label">Variante</span>
+            <div className="darts-segmented">
+              <button type="button"
+                className={"darts-segmented-btn" + (!config.noScore ? " darts-segmented-btn--active" : "")}
+                onClick={() => setConfig({ ...config, noScore: false })}>Mit Punkten</button>
+              <button type="button"
+                className={"darts-segmented-btn" + (config.noScore ? " darts-segmented-btn--active" : "")}
+                onClick={() => setConfig({ ...config, noScore: true })}>No-Score</button>
+            </div>
+          </div>
+        );
+      }
+
+      function CricketInputPanel({ player, modeConfig, error, setError, applyResult, allPlayers, currentIdx }) {
+        const empty = () => [{target:null,mult:0},{target:null,mult:0},{target:null,mult:0}];
+        const [darts, setDarts] = useState(empty);
+        const [activeSlot, setActiveSlot] = useState(0);
+        const reset = () => { setDarts(empty()); setActiveSlot(0); setError(""); };
+
+        const onTarget = (t) => {
+          setError("");
+          setDarts(d => d.map((dd,i) => i === activeSlot ? { target: t, mult: dd.mult || 1 } : dd));
+        };
+        const onMult = (m) => {
+          setError("");
+          if (darts[activeSlot].target === 'B' && m === 3) return;
+          setDarts(d => d.map((dd,i) => i === activeSlot ? { ...dd, mult: m } : dd));
+          if (activeSlot < 2) setActiveSlot(activeSlot + 1);
+        };
+
+        const submit = () => {
+          setError("");
+          const newPlayer = { ...player, hits: { ...player.hits } };
+          let pointsGained = 0;
+          for (const dart of darts) {
+            if (!dart.target || dart.mult === 0) continue;
+            const t = dart.target;
+            const max = (t === 'B') ? 2 : 3;
+            const mult = Math.min(dart.mult, max);
+            const wasHits = newPlayer.hits[t];
+            const newHits = wasHits + mult;
+            if (newHits <= 3) {
+              newPlayer.hits[t] = newHits;
+            } else {
+              const opening = 3 - wasHits;
+              const overflow = mult - opening;
+              newPlayer.hits[t] = 3;
+              if (!modeConfig.noScore) {
+                const allOppClosed = allPlayers.every((p, i) => i === currentIdx ? true : ((p.hits && p.hits[t]) >= 3));
+                if (!allOppClosed) pointsGained += overflow * CRICKET_VALUES[t];
+              }
+            }
+          }
+          newPlayer.points = (player.points || 0) + pointsGained;
+          const allClosed = CRICKET_TARGETS.every(t => newPlayer.hits[t] >= 3);
+          const maxOpp = Math.max(0, ...allPlayers.filter((_, i) => i !== currentIdx).map(p => p.points || 0));
+          const win = allClosed && (modeConfig.noScore || newPlayer.points >= maxOpp);
+          applyResult({
+            playerUpdate: newPlayer,
+            historyData: { mode: 'cricket', darts: darts.map(d => ({...d})), pointsGained },
+            win,
+          });
+          reset();
+        };
+
+        const bullDisabled = darts[activeSlot].target === 'B';
+
+        return (
+          <>
+            <div className="darts-input-head">
+              <span className="darts-input-label">Aufnahme von</span>
+              <span className="darts-input-player">{player.name}</span>
+            </div>
+            <div className="darts-dart-slots">
+              {darts.map((d, i) => (
+                <button key={i} type="button" onClick={() => setActiveSlot(i)}
+                  className="darts-dart-slot"
+                  style={activeSlot === i ? { borderColor: 'var(--darts-red)', background: 'rgba(220,38,38,0.08)' } : {}}>
+                  <span className="darts-dart-slot-label">Dart {i + 1}</span>
+                  <span className={"darts-dart-slot-value" + (!d.target || d.mult === 0 ? " darts-dart-slot-value--miss" : "")}>
+                    {!d.target || d.mult === 0 ? "—" : (MULT_LABEL[d.mult] + d.target)}
+                  </span>
+                </button>
+              ))}
+            </div>
+            <div className="darts-target-grid">
+              {CRICKET_TARGETS.map(t => (
+                <button key={t} type="button" onClick={() => onTarget(t)}
+                  className={"darts-target-btn" + (darts[activeSlot].target === t ? " darts-target-btn--active" : "")}>
+                  {t}
+                </button>
+              ))}
+            </div>
+            <div className="darts-mult-toggle">
+              <button type="button" onClick={() => onMult(0)} className={"darts-mult-btn" + (darts[activeSlot].mult === 0 ? " darts-mult-btn--active" : "")}>Miss</button>
+              <button type="button" onClick={() => onMult(1)} className={"darts-mult-btn" + (darts[activeSlot].mult === 1 ? " darts-mult-btn--active" : "")}>S</button>
+              <button type="button" onClick={() => onMult(2)} className={"darts-mult-btn" + (darts[activeSlot].mult === 2 ? " darts-mult-btn--active" : "")}>D</button>
+              <button type="button" onClick={() => onMult(3)} disabled={bullDisabled} className={"darts-mult-btn" + (darts[activeSlot].mult === 3 ? " darts-mult-btn--active" : "")}>T</button>
+            </div>
+            <div className="darts-display-row" style={{gridTemplateColumns: '1fr auto'}}>
+              <button type="button" onClick={submit} className="darts-key darts-key--submit" style={{gridColumn: 'span 1'}}>Eintragen</button>
+              <button type="button" onClick={reset} className="darts-key darts-key--util">C</button>
+            </div>
+            {error && <p className="darts-error">{error}</p>}
+          </>
+        );
+      }
+
+      function CricketPlayerCard({ player }) {
+        return (
+          <>
+            <div className="darts-cricket-row">
+              {CRICKET_TARGETS.map(t => {
+                const hits = (player.hits && player.hits[t]) || 0;
+                const closed = hits >= 3;
+                const mark = hits === 0 ? '·' : hits === 1 ? '/' : hits === 2 ? 'X' : '⊘';
+                return (
+                  <div key={t} className={"darts-cricket-cell" + (closed ? " darts-cricket-cell--closed" : "")}>
+                    <span className="darts-cricket-cell-num">{t}</span>
+                    <span className="darts-cricket-cell-mark">{mark}</span>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="darts-cricket-points">{player.points || 0} Pkt</div>
+          </>
+        );
+      }
+
+      function CricketHistoryItem({ entry }) {
+        const dartsStr = entry.darts.filter(d => d.target && d.mult > 0).map(d => MULT_LABEL[d.mult] + d.target).join(' ');
+        return (
+          <>
+            <span className="darts-history-left">
+              <span className="darts-history-meta">{dartsStr || 'Miss'}</span>
+            </span>
+            <span className="darts-history-points">+{entry.pointsGained || 0}</span>
+          </>
+        );
+      }
+
+      const CRICKET_MODE = {
+        id: 'cricket', label: 'Cricket',
+        fullLabel: (cfg) => cfg.noScore ? 'Cricket · No-Score' : 'Cricket',
+        defaultConfig: { noScore: false },
+        initPlayer: (name) => ({
+          name,
+          hits: { '15':0,'16':0,'17':0,'18':0,'19':0,'20':0,'B':0 },
+          points: 0,
+        }),
+        initState: () => ({}),
+        ConfigUI: CricketConfigUI,
+        InputPanel: CricketInputPanel,
+        PlayerCard: CricketPlayerCard,
+        HistoryItem: CricketHistoryItem,
+      };
+
+      // ===================================================================
+      // Around the Clock (1..20 → Bull)
+      // ===================================================================
+      function ClockConfigUI() { return null; }
+
+      function ClockInputPanel({ player, applyResult, error, setError }) {
+        const empty = () => [{hit:false},{hit:false},{hit:false}];
+        const [darts, setDarts] = useState(empty);
+        const reset = () => { setDarts(empty()); setError(""); };
+
+        const toggleDart = (i) => setDarts(d => d.map((dd, idx) => idx === i ? { hit: !dd.hit } : dd));
+
+        const targetLabel = (n) => n > 20 ? 'Bull' : String(n);
+
+        const submit = () => {
+          setError("");
+          let cur = player.current;
+          let hitsAdded = 0;
+          let totalDarts = (player.darts || 0);
+          const dartLog = [];
+          for (const dart of darts) {
+            totalDarts += 1;
+            const target = cur > 20 ? 'B' : cur;
+            if (dart.hit) {
+              dartLog.push({ target, hit: true });
+              if (cur > 20) {
+                applyResult({
+                  playerUpdate: { ...player, current: cur, hits: (player.hits || 0) + hitsAdded + 1, darts: totalDarts },
+                  historyData: { mode: 'clock', darts: dartLog, before: player.current, after: 'WIN' },
+                  win: true,
+                });
+                reset();
+                return;
+              }
+              cur += 1;
+              hitsAdded += 1;
+            } else {
+              dartLog.push({ target, hit: false });
+            }
+          }
+          applyResult({
+            playerUpdate: { ...player, current: cur, hits: (player.hits || 0) + hitsAdded, darts: totalDarts },
+            historyData: { mode: 'clock', darts: dartLog, before: player.current, after: cur },
+            win: false,
+          });
+          reset();
+        };
+
+        return (
+          <>
+            <div className="darts-input-head">
+              <span className="darts-input-label">Aufnahme von</span>
+              <span className="darts-input-player">{player.name}</span>
+            </div>
+            <div className="darts-checkout" style={{textAlign:'center'}}>
+              Aktuelles Ziel: <span className="darts-checkout-value">{targetLabel(player.current)}</span>
+            </div>
+            <div className="darts-dart-slots">
+              {darts.map((d, i) => {
+                let simTarget = player.current;
+                for (let j = 0; j < i; j++) if (darts[j].hit && simTarget <= 20) simTarget += 1;
+                return (
+                  <button key={i} type="button" onClick={() => toggleDart(i)}
+                    className="darts-dart-slot"
+                    style={d.hit ? { borderColor: 'var(--darts-red)', background: 'rgba(220,38,38,0.08)' } : {}}>
+                    <span className="darts-dart-slot-label">Dart {i + 1}</span>
+                    <span className={"darts-dart-slot-value" + (!d.hit ? " darts-dart-slot-value--miss" : "")}>
+                      {(d.hit ? '✓ ' : '✗ ') + targetLabel(simTarget)}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+            <div className="darts-display-row" style={{gridTemplateColumns: '1fr auto'}}>
+              <button type="button" onClick={submit} className="darts-key darts-key--submit" style={{gridColumn: 'span 1'}}>Eintragen</button>
+              <button type="button" onClick={reset} className="darts-key darts-key--util">C</button>
+            </div>
+            {error && <p className="darts-error">{error}</p>}
+          </>
+        );
+      }
+
+      function ClockPlayerCard({ player, isActive, isWinner }) {
+        const target = player.current > 20 ? 'Bull' : player.current;
+        return (
+          <>
+            <div className="darts-clock-target" style={isActive ? {color: 'var(--darts-red-bright)'} : isWinner ? {color: 'var(--darts-amber-light)'} : {}}>
+              <span className="darts-clock-arrow">→</span>{target}
+            </div>
+            <div className="darts-clock-meta">
+              {(player.hits || 0)}/21 · {(player.darts || 0)} Darts
+            </div>
+          </>
+        );
+      }
+
+      function ClockHistoryItem({ entry }) {
+        const log = entry.darts.map(d => (d.hit ? '✓' : '✗') + (d.target === 'B' ? 'B' : d.target)).join(' ');
+        return (
+          <>
+            <span className="darts-history-left">
+              <span className="darts-history-meta">{log}</span>
+            </span>
+            <span className="darts-history-points">→ {entry.after === 'WIN' ? 'WIN' : (entry.after > 20 ? 'Bull' : entry.after)}</span>
+          </>
+        );
+      }
+
+      const CLOCK_MODE = {
+        id: 'clock', label: 'Around Clock',
+        fullLabel: () => 'Around the Clock',
+        defaultConfig: {},
+        initPlayer: (name) => ({ name, current: 1, hits: 0, darts: 0 }),
+        initState: () => ({}),
+        ConfigUI: ClockConfigUI,
+        InputPanel: ClockInputPanel,
+        PlayerCard: ClockPlayerCard,
+        HistoryItem: ClockHistoryItem,
+      };
+
+      // ===================================================================
+      // Shanghai (Runden Start..20 · S+D+T einer Runde = sofort Sieg)
+      // ===================================================================
+      function ShanghaiConfigUI({ config, setConfig }) {
+        return (
+          <div className="darts-config-row">
+            <span className="darts-config-label">Startrunde</span>
+            <div className="darts-segmented">
+              {[1,7,10].map(s => (
+                <button key={s} type="button"
+                  className={"darts-segmented-btn" + (config.startRound === s ? " darts-segmented-btn--active" : "")}
+                  onClick={() => setConfig({ ...config, startRound: s })}>R {s}</button>
+              ))}
+            </div>
+          </div>
+        );
+      }
+
+      function ShanghaiInputPanel({ player, applyResult, error, setError, modeState }) {
+        const round = modeState.round;
+        const empty = () => [{mult:0},{mult:0},{mult:0}];
+        const [darts, setDarts] = useState(empty);
+        const reset = () => { setDarts(empty()); setError(""); };
+        const setDart = (i, m) => setDarts(d => d.map((dd, idx) => idx === i ? { mult: m } : dd));
+
+        const submit = () => {
+          setError("");
+          const mults = darts.map(d => d.mult);
+          let pointsGained = 0;
+          for (const m of mults) if (m > 0) pointsGained += round * m;
+          const isShanghai = mults.includes(1) && mults.includes(2) && mults.includes(3);
+          const newPlayer = {
+            ...player,
+            points: (player.points || 0) + pointsGained,
+            shanghai: !!(player.shanghai || isShanghai),
+          };
+          applyResult({
+            playerUpdate: newPlayer,
+            historyData: { mode: 'shanghai', round, mults, pointsGained, shanghai: isShanghai },
+            win: isShanghai,
+          });
+          reset();
+        };
+
+        return (
+          <>
+            <div className="darts-input-head">
+              <span className="darts-input-label">Aufnahme von</span>
+              <span className="darts-input-player">{player.name}</span>
+            </div>
+            <div className="darts-shanghai-round">
+              Runde {round} · Ziel <strong>{round}</strong>
+            </div>
+            <div className="darts-dart-slots">
+              {darts.map((d, i) => (
+                <div key={i} className="darts-dart-slot" style={{padding: '0.375rem 0.25rem', minHeight: '5.5rem', justifyContent: 'space-between'}}>
+                  <span className="darts-dart-slot-label">Dart {i + 1}</span>
+                  <span className={"darts-dart-slot-value" + (d.mult === 0 ? " darts-dart-slot-value--miss" : "")}
+                        style={{fontSize: '0.9375rem'}}>
+                    {d.mult === 0 ? '—' : MULT_LABEL[d.mult] + round}
+                  </span>
+                  <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'0.125rem',width:'100%'}}>
+                    {[0,1,2,3].map(m => (
+                      <button key={m} type="button" onClick={() => setDart(i, m)}
+                        className={"darts-mult-btn" + (d.mult === m ? " darts-mult-btn--active" : "")}
+                        style={{fontSize:'0.625rem',padding:'0.25rem 0'}}>
+                        {m === 0 ? '—' : MULT_LABEL[m]}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="darts-display-row" style={{gridTemplateColumns: '1fr auto'}}>
+              <button type="button" onClick={submit} className="darts-key darts-key--submit" style={{gridColumn: 'span 1'}}>Eintragen</button>
+              <button type="button" onClick={reset} className="darts-key darts-key--util">C</button>
+            </div>
+            {error && <p className="darts-error">{error}</p>}
+          </>
+        );
+      }
+
+      function ShanghaiPlayerCard({ player, isActive, isWinner, modeState }) {
+        return (
+          <>
+            <div className={"darts-player-score" +
+              (isActive ? " darts-player-score--active" : "") +
+              (isWinner ? " darts-player-score--winner" : "")}>
+              {player.points || 0}
+            </div>
+            <div className="darts-player-foot">
+              <span>R {modeState.round}</span>
+              <span>{player.shanghai ? <span className="darts-bust">SHANGHAI</span> : "—"}</span>
+            </div>
+          </>
+        );
+      }
+
+      function ShanghaiHistoryItem({ entry }) {
+        const mults = entry.mults.map(m => m === 0 ? '—' : MULT_LABEL[m]).join(' ');
+        return (
+          <>
+            <span className="darts-history-left">
+              <span className="darts-history-meta">R{entry.round}: {mults}</span>
+            </span>
+            <span className={entry.shanghai ? "darts-bust" : "darts-history-points"}>
+              +{entry.pointsGained}{entry.shanghai ? ' SHANGHAI!' : ''}
+            </span>
+          </>
+        );
+      }
+
+      const SHANGHAI_MODE = {
+        id: 'shanghai', label: 'Shanghai',
+        fullLabel: (cfg) => `Shanghai R${cfg.startRound}-20`,
+        defaultConfig: { startRound: 7 },
+        initPlayer: (name) => ({ name, points: 0, shanghai: false }),
+        initState: (cfg) => ({ round: cfg.startRound }),
+        onTurnAdvance: (players, modeState, nextIdx) => {
+          if (nextIdx === 0) {
+            const nextRound = modeState.round + 1;
+            if (nextRound > 20) {
+              let bestIdx = 0;
+              for (let i = 1; i < players.length; i++) {
+                if ((players[i].points || 0) > (players[bestIdx].points || 0)) bestIdx = i;
+              }
+              return { win: true, winnerIdx: bestIdx };
+            }
+            return { modeStateUpdate: { round: nextRound } };
+          }
+          return null;
+        },
+        ConfigUI: ShanghaiConfigUI,
+        InputPanel: ShanghaiInputPanel,
+        PlayerCard: ShanghaiPlayerCard,
+        HistoryItem: ShanghaiHistoryItem,
+      };
+
+      const MODES = {
+        x01: X01_MODE,
+        cricket: CRICKET_MODE,
+        clock: CLOCK_MODE,
+        shanghai: SHANGHAI_MODE,
+      };
+
+      // ===================================================================
+      // Main component
+      // ===================================================================
       function DartsGame() {
         const [phase, setPhase] = useState("setup");
         const [names, setNames] = useState(INITIAL_NAMES);
+        const [modeId, setModeId] = useState('x01');
+        const [modeConfig, setModeConfig] = useState(MODES.x01.defaultConfig);
         const [players, setPlayers] = useState([]);
+        const [modeState, setModeState] = useState({});
         const [currentIdx, setCurrentIdx] = useState(0);
         const [history, setHistory] = useState([]);
-        const [input, setInput] = useState("");
         const [error, setError] = useState("");
-        const [pendingFinish, setPendingFinish] = useState(null);
         const [winnerIdx, setWinnerIdx] = useState(null);
 
+        const driver = MODES[modeId];
+
+        const switchMode = (id) => {
+          setModeId(id);
+          setModeConfig(MODES[id].defaultConfig);
+        };
+
         const startGame = () => {
-          setPlayers(names.map((n, i) => ({
-            name: n.trim() || defaultName(i),
-            score: START_SCORE,
-            throws: [],
-          })));
+          const initial = names.map((n, i) => driver.initPlayer(n.trim() || defaultName(i), modeConfig));
+          setPlayers(initial);
+          setModeState(driver.initState(modeConfig));
           setCurrentIdx(0);
           setHistory([]);
           setWinnerIdx(null);
+          setError("");
           setPhase("playing");
         };
 
@@ -562,105 +1475,50 @@
           setNames(names.filter((_, idx) => idx !== i));
         };
 
-        const applyThrow = (scored, finishedOnDouble) => {
-          const cur = players[currentIdx];
-          const remaining = cur.score - scored;
-          let bust = false;
-          let reason = null;
-          let newScore = cur.score;
-          let throwScored = scored;
-
-          if (remaining < 0) { bust = true; reason = "Überworfen"; }
-          else if (remaining === 0 && !finishedOnDouble) { bust = true; reason = "Kein Doppel"; }
-          else if (remaining === 1) { bust = true; reason = "Rest 1 (nicht ausspielbar)"; }
-          else { newScore = remaining; }
-
-          if (bust) throwScored = 0;
-
-          const updated = [...players];
-          updated[currentIdx] = {
-            ...cur,
-            score: newScore,
-            throws: [...cur.throws, {
-              scored: throwScored, attempted: scored, bust, reason,
-              finishedOnDouble: !bust && finishedOnDouble,
-            }],
+        const applyResult = (result) => {
+          const snapshot = {
+            players: players.map(p => structuredClone(p)),
+            modeState: structuredClone(modeState),
+            currentIdx, phase, winnerIdx,
           };
-          setPlayers(updated);
-          setHistory((h) => [...h, {
-            playerIdx: currentIdx, scored: throwScored, attempted: scored,
-            before: cur.score, after: newScore, bust, reason,
-          }]);
+          let newPlayers = players.map((p, i) => i === currentIdx ? result.playerUpdate : p);
+          let newModeState = modeState;
+          let newPhase = phase;
+          let newWinnerIdx = winnerIdx;
+          let newCurrentIdx = currentIdx;
 
-          if (newScore === 0 && !bust) {
-            setWinnerIdx(currentIdx);
-            setPhase("finished");
-            return;
+          if (result.win) {
+            newPhase = 'finished';
+            newWinnerIdx = currentIdx;
+          } else {
+            newCurrentIdx = (currentIdx + 1) % players.length;
+            if (driver.onTurnAdvance) {
+              const adv = driver.onTurnAdvance(newPlayers, newModeState, newCurrentIdx, modeConfig);
+              if (adv) {
+                if (adv.modeStateUpdate) newModeState = { ...newModeState, ...adv.modeStateUpdate };
+                if (adv.win) { newPhase = 'finished'; newWinnerIdx = adv.winnerIdx; }
+              }
+            }
           }
-          setCurrentIdx((idx) => (idx + 1) % players.length);
-        };
 
-        const submitThrow = () => {
+          setPlayers(newPlayers);
+          setModeState(newModeState);
+          setCurrentIdx(newCurrentIdx);
+          setPhase(newPhase);
+          setWinnerIdx(newWinnerIdx);
+          setHistory(h => [...h, { playerIdx: currentIdx, snapshot, data: result.historyData }]);
           setError("");
-          if (input === "") {
-            setError("Keine Zahl eingegeben.");
-            return;
-          }
-          const val = parseInt(input, 10);
-          if (isNaN(val) || val < 0 || val > 180) {
-            setError("Bitte eine Zahl zwischen 0 und 180 eingeben.");
-            return;
-          }
-          const cur = players[currentIdx];
-          const remaining = cur.score - val;
-          if (remaining === 0) {
-            setPendingFinish({ scored: val });
-            return;
-          }
-          applyThrow(val, false);
-          setInput("");
-        };
-
-        const appendDigit = (d) => {
-          setError("");
-          const next = input === "0" ? String(d) : input + String(d);
-          if (parseInt(next, 10) > 180) return;
-          if (next.length > 3) return;
-          setInput(next);
-        };
-
-        const deleteDigit = () => {
-          setError("");
-          setInput((v) => v.slice(0, -1));
-        };
-
-        const setQuick = (v) => {
-          setError("");
-          setInput(String(v));
-        };
-
-        const confirmFinish = (onDouble) => {
-          applyThrow(pendingFinish.scored, onDouble);
-          setPendingFinish(null);
-          setInput("");
         };
 
         const undo = () => {
           if (history.length === 0) return;
           const last = history[history.length - 1];
-          const updated = [...players];
-          const p = updated[last.playerIdx];
-          updated[last.playerIdx] = {
-            ...p,
-            score: last.before,
-            throws: p.throws.slice(0, -1),
-          };
-          setPlayers(updated);
-          setHistory((h) => h.slice(0, -1));
-          setCurrentIdx(last.playerIdx);
-          setWinnerIdx(null);
-          setPhase("playing");
-          setInput("");
+          setPlayers(last.snapshot.players);
+          setModeState(last.snapshot.modeState);
+          setCurrentIdx(last.snapshot.currentIdx);
+          setPhase(last.snapshot.phase);
+          setWinnerIdx(last.snapshot.winnerIdx);
+          setHistory(h => h.slice(0, -1));
           setError("");
         };
 
@@ -668,30 +1526,26 @@
           if (!window.confirm("Spiel wirklich zurücksetzen?")) return;
           setPhase("setup");
           setPlayers([]);
+          setModeState({});
           setHistory([]);
           setWinnerIdx(null);
-          setInput("");
           setError("");
         };
 
-        const checkoutHint = useMemo(() => {
-          if (phase !== "playing") return null;
-          const s = players[currentIdx]?.score;
-          return CHECKOUT_HINTS[s] || null;
-        }, [players, currentIdx, phase]);
-
-        const activeHistory = useMemo(() => {
-          return history.filter((h) => h.playerIdx === currentIdx);
-        }, [history, currentIdx]);
+        const activeHistory = useMemo(
+          () => history.filter(h => h.playerIdx === currentIdx),
+          [history, currentIdx]
+        );
 
         const isGame = phase === "playing" || phase === "finished";
+        const titleText = isGame ? driver.fullLabel(modeConfig) : "Dart";
 
         return (
           <div className="darts-root">
             <div className={"darts-container darts-grain" + (isGame ? " darts-game-view" : "")}>
               <header className="darts-header">
                 <div>
-                  <h1 className="darts-title">501 · Double Out</h1>
+                  <h1 className="darts-title">{titleText}</h1>
                   <p className="darts-subtitle">Ein Brett · ein Sieger</p>
                 </div>
                 {phase !== "setup" && (
@@ -701,7 +1555,22 @@
 
               {phase === "setup" && (
                 <div className="darts-card darts-setup">
-                  <h2 className="darts-card-title">Spielernamen</h2>
+                  <div className="darts-mode-picker">
+                    <h3 className="darts-section-title">Spielmodus</h3>
+                    <div className="darts-mode-grid">
+                      {Object.values(MODES).map(m => (
+                        <button key={m.id} type="button" onClick={() => switchMode(m.id)}
+                          className={"darts-mode-chip" + (modeId === m.id ? " darts-mode-chip--active" : "")}>
+                          {m.label}
+                        </button>
+                      ))}
+                    </div>
+                    <div className="darts-mode-config">
+                      {driver.ConfigUI && <driver.ConfigUI config={modeConfig} setConfig={setModeConfig} />}
+                    </div>
+                  </div>
+
+                  <h3 className="darts-section-title" style={{marginTop: '0.5rem'}}>Spieler</h3>
                   <div className="darts-name-list">
                     {names.map((n, i) => (
                       <div key={i} className="darts-name-row">
@@ -744,9 +1613,6 @@
                     {players.map((p, i) => {
                       const isActive = phase === "playing" && i === currentIdx;
                       const isWinner = phase === "finished" && i === winnerIdx;
-                      const lastThrow = p.throws[p.throws.length - 1];
-                      const totalThrown = p.throws.reduce((s, t) => s + t.scored, 0);
-                      const avg = p.throws.length ? (totalThrown / p.throws.length).toFixed(0) : "—";
                       const cardClass = ["darts-player",
                         isActive && "darts-player--active",
                         isWinner && "darts-player--winner"]
@@ -758,21 +1624,10 @@
                             <h3 className={"darts-player-name" + (isWinner ? " darts-player-name--winner" : "")}>{p.name}</h3>
                             {isWinner && <span className="darts-win-badge">★</span>}
                           </div>
-                          <div className={"darts-player-score" +
-                            (isActive ? " darts-player-score--active" : "") +
-                            (isWinner ? " darts-player-score--winner" : "")}>
-                            {p.score}
-                          </div>
-                          <div className="darts-player-foot">
-                            <span>Ø {avg}</span>
-                            <span>
-                              {lastThrow ? (
-                                <span className={lastThrow.bust ? "darts-bust" : "darts-ok"}>
-                                  {lastThrow.bust ? `BUST` : `+${lastThrow.scored}`}
-                                </span>
-                              ) : "—"}
-                            </span>
-                          </div>
+                          <driver.PlayerCard
+                            player={p} isActive={isActive} isWinner={isWinner}
+                            modeConfig={modeConfig} modeState={modeState}
+                          />
                         </div>
                       );
                     })}
@@ -780,48 +1635,17 @@
 
                   {phase === "playing" && (
                     <div className="darts-card darts-input-card">
-                      {pendingFinish ? (
-                        <div>
-                          <p className="darts-finish-title">{players[currentIdx].name} – mögliches Finish!</p>
-                          <p className="darts-finish-sub">Wurde mit einem Doppel beendet?</p>
-                          <div className="darts-finish-buttons">
-                            <button onClick={() => confirmFinish(true)} className="darts-success-btn">Ja – Doppel ✓</button>
-                            <button onClick={() => confirmFinish(false)} className="darts-neutral-btn">Nein – Bust</button>
-                          </div>
-                        </div>
-                      ) : (
-                        <>
-                          <div className="darts-input-head">
-                            <span className="darts-input-label">Aufnahme von</span>
-                            <span className="darts-input-player">{players[currentIdx].name}</span>
-                          </div>
-                          {checkoutHint && (
-                            <div className="darts-checkout">
-                              💡 Checkout: <span className="darts-checkout-value">{checkoutHint}</span>
-                            </div>
-                          )}
-                          <div className="darts-display-row">
-                            <div className={"darts-display" + (input === "" ? " darts-display--empty" : "")}>
-                              {input === "" ? "0–180" : input}
-                            </div>
-                            <button type="button" onClick={deleteDigit} className="darts-key darts-key--util" aria-label="Letzte Ziffer löschen">⌫</button>
-                            <button type="button" onClick={() => { setInput(""); setError(""); }} className="darts-key darts-key--util" aria-label="Eingabe leeren">C</button>
-                          </div>
-                          <div className="darts-keypad">
-                            {KEYPAD_DIGITS.map((d) => (
-                              <button key={d} type="button" onClick={() => appendDigit(d)} className="darts-key">{d}</button>
-                            ))}
-                            <button type="button" onClick={() => appendDigit(0)} className="darts-key">0</button>
-                            <button type="button" onClick={submitThrow} className="darts-key darts-key--submit">Eintragen</button>
-                          </div>
-                          {error && <p className="darts-error">{error}</p>}
-                          <div className="darts-quick">
-                            {QUICK_VALUES.map((v) => (
-                              <button key={v} type="button" onClick={() => setQuick(v)} className="darts-chip">{v}</button>
-                            ))}
-                          </div>
-                        </>
-                      )}
+                      <driver.InputPanel
+                        key={modeId + ':' + currentIdx + ':' + (modeState.round || 0)}
+                        player={players[currentIdx]}
+                        modeConfig={modeConfig}
+                        modeState={modeState}
+                        applyResult={applyResult}
+                        allPlayers={players}
+                        currentIdx={currentIdx}
+                        error={error}
+                        setError={setError}
+                      />
                     </div>
                   )}
 
@@ -840,12 +1664,7 @@
                       <ul className="darts-history-list">
                         {activeHistory.slice().reverse().slice(0, HISTORY_LIMIT).map((h, idx) => (
                           <li key={idx} className="darts-history-item">
-                            <span className="darts-history-left">
-                              <span className="darts-history-meta">{h.before} → {h.after}</span>
-                            </span>
-                            <span className={h.bust ? "darts-bust" : "darts-history-points"}>
-                              {h.bust ? `BUST (${h.attempted}) – ${h.reason}` : `+${h.scored}`}
-                            </span>
+                            <driver.HistoryItem entry={h.data} />
                           </li>
                         ))}
                       </ul>
