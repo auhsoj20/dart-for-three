@@ -1,0 +1,19 @@
+{
+  "name": "Dart for Three",
+  "short_name": "Dart 4 Three",
+  "description": "Dart-Scoring (X01, Cricket, Around the Clock, Shanghai)",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0606",
+  "theme_color": "#dc2626",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
